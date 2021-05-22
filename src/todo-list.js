@@ -7,32 +7,53 @@ class ToDoList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            startDate: new Date(),
+            itemDescription: '',
+            dueDate: new Date(),
             toDoItems: []
         };
-        this.handleChange = this.handleChange.bind(this);
+        this.handleDateChange = this.handleDateChange.bind(this);
+        this.handleItemChange = this.handleItemChange.bind(this);
         this.AddNewItem = this.AddNewItem.bind(this);
     }
 
     componentDidMount() {
         // At this point we will assume that this array is a part of an API response 
         // Let's imagine that we are making a GET call here. 
-        const items = [{ id: 0, description: 'Wash the car', dueDate: new Date() },
-        { id: 1, description: 'Clean the house', dueDate: new Date() },
-        { id: 2, description: 'Cook some foods', dueDate: new Date() }]
+        const items = [
+            { id: 0, description: 'Wash the car', dueDate: new Date() },
+            { id: 1, description: 'Clean the house', dueDate: new Date() },
+            { id: 2, description: 'Cook some foods', dueDate: new Date() }]
         this.setState({
             toDoItems: items
         });
     }
 
-    handleChange(date) {
+    handleDateChange(date) {
         this.setState({
-            startDate: date
+            dueDate: date
+        })
+    }
+
+    handleItemChange(event) {
+        this.setState({
+            itemDescription: event.target.value
         })
     }
 
     AddNewItem() {
-        console.log(this.state.startDate);
+        const newToDOItem = {
+            id: this.state.toDoItems.length,
+            description: this.state.itemDescription,
+            dueDate: this.state.dueDate,
+        };
+        const toDoItems = this.state.toDoItems;
+        toDoItems.push(newToDOItem);
+        this.setState({
+            toDoItems: toDoItems
+        })
+        this.setState({
+            itemDescription: ''
+        })
     }
 
     render() {
@@ -40,11 +61,14 @@ class ToDoList extends Component {
         return (
             <>
                 <div className="container p-4 d-flex">
-                    <input type="text" className="form-control" />
+                    <input type="text" 
+                           onChange={this.handleItemChange} 
+                           value={this.state.itemDescription}
+                           className="form-control" />
                     <DatePicker
-                        selected={this.state.startDate}
-                        onChange={this.handleChange}
-                        name="startDate"
+                        selected={this.state.dueDate}
+                        onChange={this.handleDateChange}
+                        name="dueDate"
                         dateFormat="MM/dd/yyyy"
                     />
                     <button onClick={this.AddNewItem} className="btn btn-primary add-btn">ADD</button>
