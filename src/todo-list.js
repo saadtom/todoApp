@@ -15,11 +15,13 @@ class ToDoList extends Component {
     }
 
     componentDidMount() {
-        const foo = [{ id: 0, description: 'Wash the car', dueDate: new Date() },
+        // At this point we will assume that this array is a part of an API response 
+        // Let's imagine that we are making a GET call here. 
+        const items = [{ id: 0, description: 'Wash the car', dueDate: new Date() },
         { id: 1, description: 'Clean the house', dueDate: new Date() },
         { id: 2, description: 'Cook some foods', dueDate: new Date() }]
         this.setState({
-            toDoItems: foo
+            toDoItems: items
         });
     }
 
