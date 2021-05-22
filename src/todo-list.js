@@ -4,7 +4,10 @@ class ToDoList extends Component {
 
     render() {
         return (
-            <p>To Do List</p>
+            <div className="container p-4 d-flex">
+                <input type="text" className="form-control" />
+                <button className="btn btn-primary add-btn">ADD</button>
+            </div>
         )
     }
 }
