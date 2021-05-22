@@ -52,7 +52,14 @@ class ToDoList extends Component {
                 <div className='container'>
                     <div className='m-t-3'>
                         {toDoItems.map((item, index) => {
-                            return <div className="item-wrapper" key={index}>{item.description}</div>
+                            return <div className="item-wrapper" key={index}>
+                                <div className="d-block">
+                                    <strong>Description:</strong> <span>{item.description}</span>
+                                </div>
+                                <div className="d-block">
+                                    <strong>Due Date:</strong> <span>{item.dueDate.toLocaleDateString()}</span>
+                                </div>
+                            </div>
                         })}
                     </div>
                 </div>
