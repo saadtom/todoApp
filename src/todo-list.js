@@ -1,12 +1,12 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import ToDoItem from './todo-item.js';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 
 
 class ToDoList extends Component {
-    constructor(props) {
-        super(props)
+    constructor() {
+        super()
         this.state = {
             itemDescription: '',
             dueDate: new Date(),
