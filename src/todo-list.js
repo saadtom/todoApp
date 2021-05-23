@@ -102,6 +102,7 @@ class ToDoList extends Component {
                     <DatePicker
                         selected={this.state.dueDate}
                         onChange={this.handleDateChange}
+                        minDate={new Date()}
                         name="dueDate"
                         dateFormat="MM/dd/yyyy"
                     />

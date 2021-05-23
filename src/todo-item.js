@@ -1,3 +1,4 @@
+
 import React, { Component, useState } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
@@ -35,6 +36,7 @@ class ToDoItem extends React.Component {
 
   render() {
     return (
+
       <div className="item-wrapper">
         <div className="d-block">
           {this.state.editMode ?
@@ -48,6 +50,7 @@ class ToDoItem extends React.Component {
                 <DatePicker
                   selected={this.props.item.dueDate}
                   onChange={this.handleChange}
+                  minDate={new Date()}
                   onKeyDown={this.toggleEditMode}
                   name="dueDate"
                   dateFormat="MM/dd/yyyy" />
