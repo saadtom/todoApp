@@ -10,6 +10,7 @@ class ToDoList extends Component {
         this.state = {
             itemDescription: '',
             dueDate: new Date(),
+            filterValue: '',
             toDoItems: []
         };
         this.handleDateChange = this.handleDateChange.bind(this);
@@ -17,6 +18,7 @@ class ToDoList extends Component {
         this.submitNotes = this.submitNotes.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
         this.AddNewItem = this.AddNewItem.bind(this);
     }
 
@@ -77,6 +79,12 @@ class ToDoList extends Component {
         })
     }
 
+    handleFilter(event) {
+        this.setState({
+            filterValue: event.target.value
+        })
+    }
+
     submitNotes() {
         // Since we don't have a real API to make a POST call here we will store the data in local storage. 
         localStorage.setItem('toDoList', JSON.stringify(this.state.toDoItems));
@@ -99,9 +107,19 @@ class ToDoList extends Component {
                     />
                     <button onClick={this.AddNewItem} className="btn btn-primary add-btn">ADD</button>
                 </div>
+                <div className="container d-flex">
+                    <div className='col-4'>
+                        <span>Filter items by description</span>
+                    </div>
+                    <div className='col-8'>
+                        <input type="text"
+                            onChange={this.handleFilter}
+                            className="form-control" />
+                    </div>
+                </div>
                 <div className='container'>
                     <div className='m-t-3'>
-                        {toDoItems.map((item, index) => {
+                        {toDoItems.filter(item => item.description.toLowerCase().includes(this.state.filterValue.toLowerCase())).map((item, index) => {
                             return <ToDoItem key={index} item={item}
                                 onChange={this.handleChange}
                                 onClick={this.handleDelete} />
