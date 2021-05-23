@@ -44,8 +44,8 @@ function ToDoItem(props) {
             </div>
           </>
           : <>
-            <div><strong>Description:</strong><span>{props.item.description}</span></div>
-            <div><strong>Due Date:</strong><span>{props.item.dueDate.toLocaleDateString()}</span></div>
+            <div><strong>Description:</strong><span> {props.item.description}</span></div>
+            <div><strong>Due Date:</strong><span> {props.item.dueDate.toLocaleDateString()}</span></div>
           </>
         }
       </div>
