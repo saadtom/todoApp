@@ -59,8 +59,8 @@ class ToDoList extends Component {
         })
     }
 
-    handleDelete(index) {
-        let todoItems = this.state.toDoItems.filter((item) => item.id !== index);
+    handleDelete(id) {
+        let todoItems = this.state.toDoItems.filter((item) => item.id !== id);
         this.setState({ toDoItems : todoItems });
     }
 
