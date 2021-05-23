@@ -9,6 +9,7 @@ class ToDoItem extends React.Component {
       editMode: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.toggleEditMode = this.toggleEditMode.bind(this);
   }
 
@@ -26,7 +27,10 @@ class ToDoItem extends React.Component {
     } else {
       this.props.onChange({ value: event, index: this.props.item.id });
     }
-  
+  }
+
+  handleDelete() {
+    this.props.onClick(this.props.item.id);
   }
 
   render() {
@@ -56,7 +60,7 @@ class ToDoItem extends React.Component {
           }
         </div>
         <span onClick={() => this.setState({ editMode: !this.state.editMode })} className="fa fa-edit"></span>
-        <span onClick={() => this.deleteItem(this.props.item.id)} className="fa fa-trash"></span>
+        <span onClick={this.handleDelete} className="fa fa-trash"></span>
       </div>
     );
   }

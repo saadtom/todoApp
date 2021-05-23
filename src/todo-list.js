@@ -15,6 +15,7 @@ class ToDoList extends Component {
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleItemChange = this.handleItemChange.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
         this.AddNewItem = this.AddNewItem.bind(this);
     }
 
@@ -58,8 +59,8 @@ class ToDoList extends Component {
         })
     }
 
-    deleteItem(index) {
-        let todoItems = this.state.toDoItems.filter((item, indx) => indx !== index);
+    handleDelete(index) {
+        let todoItems = this.state.toDoItems.filter((item) => item.id !== index);
         this.setState({ toDoItems : todoItems });
     }
 
@@ -95,7 +96,9 @@ class ToDoList extends Component {
                 <div className='container'>
                     <div className='m-t-3'>
                         {toDoItems.map((item, index) => {
-                           return <ToDoItem key={index} item={item} onChange={this.handleChange}/>
+                           return <ToDoItem key={index} item={item} 
+                           onChange={this.handleChange}
+                           onClick={this.handleDelete}/>
                         })}
                     </div>
                 </div>
