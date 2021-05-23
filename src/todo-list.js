@@ -56,6 +56,11 @@ class ToDoList extends Component {
         })
     }
 
+    deleteItem(index) {
+        let todoItems = this.state.toDoItems.filter((item, indx) => indx !== index);
+        this.setState({ toDoItems : todoItems });
+    }
+
     render() {
         const toDoItems = this.state.toDoItems;
         return (
@@ -79,6 +84,8 @@ class ToDoList extends Component {
                             return <div className="item-wrapper" key={index}>
                                 <div className="d-block">
                                     <strong>Description:</strong> <span>{item.description}</span>
+                                    <span className="fa fa-edit"></span>
+                                    <span onClick={() => this.deleteItem(index)} className="fa fa-trash"></span>
                                 </div>
                                 <div className="d-block">
                                     <strong>Due Date:</strong> <span>{item.dueDate.toLocaleDateString()}</span>
