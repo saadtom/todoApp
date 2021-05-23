@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react';
+import ToDoItem from './todo-item.js';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 
@@ -81,16 +82,7 @@ class ToDoList extends Component {
                 <div className='container'>
                     <div className='m-t-3'>
                         {toDoItems.map((item, index) => {
-                            return <div className="item-wrapper" key={index}>
-                                <div className="d-block">
-                                    <strong>Description:</strong> <span>{item.description}</span>
-                                    <span className="fa fa-edit"></span>
-                                    <span onClick={() => this.deleteItem(index)} className="fa fa-trash"></span>
-                                </div>
-                                <div className="d-block">
-                                    <strong>Due Date:</strong> <span>{item.dueDate.toLocaleDateString()}</span>
-                                </div>
-                            </div>
+                           return <ToDoItem key={index} item={item}/>
                         })}
                     </div>
                 </div>
