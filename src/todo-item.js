@@ -8,44 +8,50 @@ class ToDoItem extends React.Component {
     this.state = {
       editMode: false,
     };
-    // this.handleDateChange = this.handleDateChange.bind(this);
-    // this.handleItemChange = this.handleItemChange.bind(this);
-    // this.toggleEditMode = this.toggleEditMode.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.toggleEditMode = this.toggleEditMode.bind(this);
   }
 
-  // handleDateChange(date) {
-  //     this.setState({
-  //         dueDate: date
-  //     })
-  // }
+  toggleEditMode(event) {
+    if (event.keyCode == 13) {
+      this.setState({
+        editMode: false
+      })
+    }
+  }
 
-  handleItemChange(event) {
-    // this.setState({
-    //   itemDescription: event.target.value
-    // })
+  handleChange(event) {
+    if (event.target) {
+      this.props.onChange({ value: event.target.value, index: this.props.item.id });
+    } else {
+      this.props.onChange({ value: event, index: this.props.item.id });
+    }
+  
   }
 
   render() {
     return (
-      <div className="item-wrapper" key={this.props.id}>
+      <div className="item-wrapper">
         <div className="d-block">
           {this.state.editMode ?
             <>
               <div className="col-12 d-flex">
                 <input type="text"
-                  onChange={this.handleItemChange}
+                  onChange={this.handleChange}
+                  onKeyDown={this.toggleEditMode}
                   value={this.props.item.description}
                   className="form-control" />
-                   <DatePicker
-                selected={this.props.item.dueDate}
-                onChange={this.handleDateChange}
-                name="dueDate"
-                dateFormat="MM/dd/yyyy" />
+                <DatePicker
+                  selected={this.props.item.dueDate}
+                  onChange={this.handleChange}
+                  onKeyDown={this.toggleEditMode}
+                  name="dueDate"
+                  dateFormat="MM/dd/yyyy" />
               </div>
             </>
             : <>
-              <div><strong>Description:</strong> <span>{this.props.item.description}</span></div>
-              <div><strong>Due Date:</strong> <span>{this.props.item.dueDate.toLocaleDateString()}</span></div>
+              <div><strong>Description:</strong><span>{this.props.item.description}</span></div>
+              <div><strong>Due Date:</strong><span>{this.props.item.dueDate.toLocaleDateString()}</span></div>
             </>
           }
         </div>

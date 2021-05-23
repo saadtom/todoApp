@@ -14,6 +14,7 @@ class ToDoList extends Component {
         };
         this.handleDateChange = this.handleDateChange.bind(this);
         this.handleItemChange = this.handleItemChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.AddNewItem = this.AddNewItem.bind(this);
     }
 
@@ -62,6 +63,18 @@ class ToDoList extends Component {
         this.setState({ toDoItems : todoItems });
     }
 
+    handleChange(value) {
+        let todoItems = this.state.toDoItems;
+        if (typeof(value.value) === 'string') {
+            todoItems[value.index].description = value.value;
+        } else {
+            todoItems[value.index].dueDate = value.value;
+        }
+        this.setState({
+            toDoItems: todoItems
+        })
+    }
+
     render() {
         const toDoItems = this.state.toDoItems;
         return (
@@ -82,7 +95,7 @@ class ToDoList extends Component {
                 <div className='container'>
                     <div className='m-t-3'>
                         {toDoItems.map((item, index) => {
-                           return <ToDoItem key={index} item={item}/>
+                           return <ToDoItem key={index} item={item} onChange={this.handleChange}/>
                         })}
                     </div>
                 </div>
