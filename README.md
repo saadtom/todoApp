@@ -1,7 +1,7 @@
 Running instructions
 - Please clone the app using https://github.com/saadtom/todoApp.git
 - run 'npm install'
-- run 'npm start and the app should start on http://localhost:3000
+- run 'npm start' and the app should start on http://localhost:3000
 
 
 Potential enhancements: I would suggest to have an autocomplete API while adding new items based on previous items that's been added in the past (for example 6 months ago). 
