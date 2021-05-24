@@ -67,12 +67,12 @@ class ToDoList extends Component {
         this.setState({ toDoItems: todoItems });
     }
 
-    handleChange(value) {
+    handleChange(item) {
         let todoItems = this.state.toDoItems;
-        if (typeof (value.value) === 'string') {
-            todoItems[value.index].description = value.value;
+        if (typeof (item.value) === 'string') {
+            todoItems[item.index].description = item.value;
         } else {
-            todoItems[value.index].dueDate = value.value;
+            todoItems[item.index].dueDate = item.value;
         }
         this.setState({
             toDoItems: todoItems
