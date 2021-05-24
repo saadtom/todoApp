@@ -14,7 +14,6 @@ class ToDoList extends Component {
         this.submitNotes = this.submitNotes.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
-        this.handleFilter = this.handleFilter.bind(this);
         this.AddNewItem = this.AddNewItem.bind(this);
     }
 
@@ -63,12 +62,6 @@ class ToDoList extends Component {
         })
     }
 
-    handleFilter(event) {
-        this.setState({
-            filterValue: event.target.value
-        })
-    }
-
     submitNotes() {
         // Since we don't have a real API to make a POST call here we will store the data in local storage. 
         localStorage.setItem('toDoList', JSON.stringify(this.state.toDoItems));
@@ -98,7 +91,7 @@ class ToDoList extends Component {
                     </div>
                     <div className='col-8'>
                         <input type="text"
-                            onChange={this.handleFilter}
+                            onChange={(event) => this.setState({filterValue: event.target.value})}
                             className="form-control" />
                     </div>
                 </div>
