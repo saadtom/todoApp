@@ -1,7 +1,7 @@
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Running instructions
+1.Please clone the app using https://github.com/saadtom/todoApp.git
+2. run 'npm install'
+3. run 'npm start and the app should start on http://localhost:3000
 
 
 Potential enhancements: I would suggest to have an autocomplete API while adding new items based on previous items that's been added in the past (for example 6 months ago). 
@@ -11,4 +11,4 @@ Like when the user starts typing 'go to...' we can show an autocomplete list to 
 - go to the gym
 
 Also something to consider here is to show daily, weekly, monthly to do lists coming from the API when we first load the page. 
-For example I can add new item 'Run 2 miles' or 'Save 10 dollars' and make that show on my app every day even after I remove it or mark it as done for today.  
+For example I can add new item 'Run 2 miles' or 'Save 10 dollars' then mark it as daily event and make that show on my app every day even after I remove it or mark it as done for today.  
