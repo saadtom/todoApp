@@ -11,8 +11,6 @@ class ToDoList extends Component {
             filterValue: '',
             toDoItems: []
         };
-        this.handleDateChange = this.handleDateChange.bind(this);
-        this.handleItemChange = this.handleItemChange.bind(this);
         this.submitNotes = this.submitNotes.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
@@ -30,18 +28,6 @@ class ToDoList extends Component {
         this.setState({
             toDoItems: items
         });
-    }
-
-    handleDateChange(date) {
-        this.setState({
-            dueDate: date
-        })
-    }
-
-    handleItemChange(event) {
-        this.setState({
-            itemDescription: event.target.value
-        })
     }
 
     AddNewItem() {
@@ -94,12 +80,12 @@ class ToDoList extends Component {
             <>
                 <div className="container p-4 d-flex">
                     <input type="text"
-                        onChange={this.handleItemChange}
+                        onChange={(event) => this.setState({itemDescription: event.target.value})}
                         value={this.state.itemDescription}
                         className="form-control" />
                     <DatePicker
                         selected={this.state.dueDate}
-                        onChange={this.handleDateChange}
+                        onChange={(date) => this.setState({dueDate: date})}
                         minDate={new Date()}
                         name="dueDate"
                         dateFormat="MM/dd/yyyy"
