@@ -52,9 +52,9 @@ class ToDoList extends Component {
 
     handleChange(item) {
         let todoItems = this.state.toDoItems;
-        if (item.description) {
+        if (item.description && item.description.length > 0) {
             todoItems[item.index].description = item.description;
-        } else {
+        } else if (item.dueDate) {
             todoItems[item.index].dueDate = item.dueDate;
         }
         this.setState({
