@@ -17,9 +17,9 @@ function ToDoItem(props) {
 
   function handleChange(event) {
     if (event && event.target) {
-      props.onChange({description: event.target.value, index: props.item.id});
+      props.onChange({ description: event.target.value, index: props.item.id });
     } else {
-      props.onChange({dueDate: event, index: props.item.id });
+      props.onChange({ description: props.item.description, dueDate: event, index: props.item.id });
     }
   }
 
