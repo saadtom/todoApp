@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 
-function ToDoItem(props) {
+const ToDoItem = (props) => {
   const [editMode, setEditMode] = useState(false);
+  const [description, setDescription] = useState('');
+  const [dueDate, setDueDate] = useState(new Date());
+  
+  useEffect(() => {
+    setDescription(props.item.description);
+    setDueDate(props.item.dueDate);
+  }, [props.item.description, props.item.dueDate]);
 
   function handleDelete() {
     props.onClick(props.item.id);
@@ -15,14 +22,15 @@ function ToDoItem(props) {
     }
   }
 
-  function handleChange(event) {
-    if (event && event.target) {
-      props.onChange({ description: event.target.value, index: props.item.id });
-    } else {
-      props.onChange({ description: props.item.description, dueDate: event, index: props.item.id });
-    }
+  function handleDescriptionChange(event) {
+      setDescription(event.target.value);
+      props.onChange({ description: description, index: props.item.id });
   }
 
+  function handleDateChange(date) {
+    setDueDate(new Date(date));
+    props.onChange({ description: description, dueDate: date, index: props.item.id });
+  }
   return (
     <div className="item-wrapper">
       <div className="d-block">
@@ -30,13 +38,13 @@ function ToDoItem(props) {
           <>
             <div className="col-12 d-flex">
               <input type="text"
-                onChange={handleChange}
+                onChange={handleDescriptionChange}
                 onKeyDown={toggleEditMode}
-                value={props.item.description}
+                value={description}
                 className="form-control" />
               <DatePicker
-                selected={props.item.dueDate}
-                onChange={handleChange}
+                selected={dueDate}
+                onChange={handleDateChange}
                 minDate={new Date()}
                 onKeyDown={toggleEditMode}
                 name="dueDate"
