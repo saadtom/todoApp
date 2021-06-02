@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import DatePicker from 'react-datepicker';
 
@@ -6,7 +6,7 @@ const ToDoItem = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [description, setDescription] = useState('');
   const [dueDate, setDueDate] = useState(new Date());
-  
+
   useEffect(() => {
     setDescription(props.item.description);
     setDueDate(props.item.dueDate);
@@ -23,8 +23,8 @@ const ToDoItem = (props) => {
   }
 
   function handleDescriptionChange(event) {
-      setDescription(event.target.value);
-      props.onChange({ description: description, index: props.item.id });
+    setDescription(event.target.value);
+    props.onChange({ description: event.target.value, index: props.item.id });
   }
 
   function handleDateChange(date) {

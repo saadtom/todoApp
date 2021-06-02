@@ -76,8 +76,8 @@ function ToDoList() {
         </div>
         <div className='container'>
             <div className='m-t-3'>
-                {toDoItems.filter(item => item.description.toLowerCase().includes(filterValue.toLowerCase())).map((item, index) => {
-                    return <ToDoItem key={index} item={item}
+                {toDoItems.filter(item => item.description.toLowerCase().includes(filterValue.toLowerCase())).map((item) => {
+                    return <ToDoItem key={item.id} item={item}
                         onChange={handleChange}
                         onClick={handleDelete} />
                 })}
